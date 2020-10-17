@@ -15,4 +15,29 @@ interface PropertyInterface extends VariableInterface
      * @return string
      */
     public function getVisibility(): string;
+
+    /**
+     * Set the visibility of the property.
+     *
+     * @param string $visibility
+     *
+     * @return void
+     */
+    public function setVisibility(string $visibility): void;
+
+    /**
+     * Sets whether the property is static.
+     *
+     * @param bool $isStatic
+     *
+     * @return void
+     */
+    public function setIsStatic(bool $isStatic): void;
+
+    /**
+     * Determines whether the property is static.
+     *
+     * @return bool
+     */
+    public function isStatic(): bool;
 }

@@ -10,14 +10,14 @@ namespace GrizzIt\Ast\Common;
 interface FileInterface
 {
     /**
-     * Contains the file name.
+     * Retrieves the file name.
      *
      * @return string
      */
     public function getName(): string;
 
     /**
-     * Contains the file content.
+     * Retrieves the file content.
      *
      * @return string
      */

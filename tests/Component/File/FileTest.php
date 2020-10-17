@@ -18,6 +18,7 @@ class FileTest extends TestCase
 {
     /**
      * @covers ::getName
+     * @covers ::setName
      * @covers ::getContent
      * @covers ::addComponent
      * @covers ::__construct
@@ -37,6 +38,8 @@ class FileTest extends TestCase
 
         $subject->addComponent($fileComponent);
         $this->assertEquals($name, $subject->getName());
+        $subject->setName('bar');
+        $this->assertEquals('bar', $subject->getName());
         $this->assertEquals($expected, $subject->getContent());
     }
 }

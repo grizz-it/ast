@@ -71,6 +71,18 @@ class Variable implements VariableInterface
     }
 
     /**
+     * Set the name of the property.
+     *
+     * @param string $name
+     *
+     * @return void
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
      * Retrieves the description of the property.
      *
      * @return string
@@ -78,6 +90,18 @@ class Variable implements VariableInterface
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    /**
+     * Set the description of the property.
+     *
+     * @param string $description
+     *
+     * @return void
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
     }
 
     /**
@@ -91,6 +115,18 @@ class Variable implements VariableInterface
     }
 
     /**
+     * Set the type of the property.
+     *
+     * @param string $type
+     *
+     * @return void
+     */
+    public function setType(string $type): void
+    {
+        $this->type = $type;
+    }
+
+    /**
      * Retrieves the value of the variable.
      *
      * @return ValueInterface|null
@@ -98,6 +134,18 @@ class Variable implements VariableInterface
     public function getValue(): ?ValueInterface
     {
         return $this->value;
+    }
+
+    /**
+     * Set the value of the variable.
+     *
+     * @param ValueInterface|null $value
+     *
+     * @return void
+     */
+    public function setValue(?ValueInterface $value): void
+    {
+        $this->value = $value;
     }
 
     /**

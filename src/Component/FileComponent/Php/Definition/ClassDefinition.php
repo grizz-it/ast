@@ -53,6 +53,13 @@ class ClassDefinition extends AbstractDefinition
     private $isTrait = false;
 
     /**
+     * Determines whether the class is final.
+     *
+     * @var bool
+     */
+    private $isFinal = false;
+
+    /**
      * Sets the class to be abstract.
      *
      * @param bool $abstract
@@ -72,6 +79,28 @@ class ClassDefinition extends AbstractDefinition
     public function isAbstract(): bool
     {
         return $this->isAbstract;
+    }
+
+    /**
+     * Sets whether the class is final.
+     *
+     * @param bool $isFinal
+     *
+     * @return void
+     */
+    public function setIsFinal(bool $isFinal): void
+    {
+        $this->isFinal = $isFinal;
+    }
+
+    /**
+     * Determines whether the class is final.
+     *
+     * @return bool
+     */
+    public function isFinal(): bool
+    {
+        return $this->isFinal;
     }
 
     /**
@@ -130,7 +159,11 @@ class ClassDefinition extends AbstractDefinition
         $classPrefix = 'trait ';
 
         if (!$this->isTrait) {
-            $classPrefix = ($this->isAbstract ? 'abstract ' : '') . 'class ';
+            $classPrefix = (
+                $this->isAbstract ?
+                'abstract ' :
+                ($this->isFinal ? 'final ' : '')
+            ) . 'class ';
         }
 
         $class .= $classPrefix . $this->getName();

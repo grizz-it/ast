@@ -39,6 +39,18 @@ class Value implements ValueInterface
     }
 
     /**
+     * Set the value.
+     *
+     * @param mixed $value
+     *
+     * @return void
+     */
+    public function setValue($value): void
+    {
+        $this->value = $value;
+    }
+
+    /**
      * Retrieves the content of the component.
      *
      * @return string

@@ -40,6 +40,13 @@ class Method extends Property implements MethodInterface
     private $content = '';
 
     /**
+     * Determines whether the method is final.
+     *
+     * @var bool
+     */
+    private $isFinal = false;
+
+    /**
      * Retrieves the parameters of the method.
      *
      * @return PropertyInterface[]
@@ -81,6 +88,28 @@ class Method extends Property implements MethodInterface
     public function isAbstract(): bool
     {
         return $this->isAbstract;
+    }
+
+    /**
+     * Sets whether the method is final.
+     *
+     * @param bool $isFinal
+     *
+     * @return void
+     */
+    public function setIsFinal(bool $isFinal): void
+    {
+        $this->isFinal = $isFinal;
+    }
+
+    /**
+     * Determines whether the method is final.
+     *
+     * @return bool
+     */
+    public function isFinal(): bool
+    {
+        return $this->isFinal;
     }
 
     /**
@@ -160,7 +189,10 @@ class Method extends Property implements MethodInterface
         $docContent = rtrim($docContent);
 
         return (new DocBlock($docContent))->getContent() .
-            $this->getVisibility() . ' function ' . $this->getName() . '(' .
+            ($this->isFinal ? 'final ' : '') .
+            $this->getVisibility() .
+            ($this->isStatic() ? ' static' : '') .
+            ' function ' . $this->getName() . '(' .
             (
                 count($parameterList) > 0 ?
                 PHP_EOL . $this->prefixLines(

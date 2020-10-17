@@ -17,6 +17,7 @@ class ValueTest extends TestCase
 {
     /**
      * @covers ::getValue
+     * @covers ::setValue
      * @covers ::getContent
      * @covers ::__construct
      *
@@ -30,5 +31,9 @@ class ValueTest extends TestCase
 
         $this->assertEquals($value, $subject->getValue());
         $this->assertEquals($expected, $subject->getContent());
+
+        $subject->setValue([]);
+        $this->assertEquals([], $subject->getValue());
+        $this->assertEquals('array (' . PHP_EOL . ')', $subject->getContent());
     }
 }

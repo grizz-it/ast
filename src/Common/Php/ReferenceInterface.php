@@ -17,4 +17,13 @@ interface ReferenceInterface extends FileComponentInterface
      * @return string
      */
     public function getName(): string;
+
+    /**
+     * Set the name of the reference.
+     *
+     * @param string $name
+     *
+     * @return void
+     */
+    public function setName(string $name): void;
 }

@@ -12,6 +12,15 @@ use GrizzIt\Ast\Common\FileComponentInterface;
 interface ValueInterface extends FileComponentInterface
 {
     /**
+     * Set the value.
+     *
+     * @param mixed $value
+     *
+     * @return void
+     */
+    public function setValue($value): void;
+
+    /**
      * Retrieves the value.
      *
      * @return mixed

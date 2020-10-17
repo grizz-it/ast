@@ -13,9 +13,13 @@ class VariableTest extends TestCase
 {
     /**
      * @covers ::getName
+     * @covers ::setName
      * @covers ::getDescription
+     * @covers ::setDescription
      * @covers ::getType
+     * @covers ::setType
      * @covers ::getValue
+     * @covers ::setValue
      * @covers ::getContent
      * @covers ::__construct
      *
@@ -37,9 +41,21 @@ class VariableTest extends TestCase
         $this->assertEquals($description, $subject->getDescription());
         $this->assertEquals($type, $subject->getType());
         $this->assertEquals($value, $subject->getValue());
+
         $this->assertEquals(
             'string $foo = \'my-value\'',
             $subject->getContent()
         );
+
+        $newValue = $this->createMock(ValueInterface::class);
+        $subject->setName('bar');
+        $subject->setDescription('Another description.');
+        $subject->setType('int');
+        $subject->setValue($newValue);
+
+        $this->assertEquals('bar', $subject->getName());
+        $this->assertEquals('Another description.', $subject->getDescription());
+        $this->assertEquals('int', $subject->getType());
+        $this->assertEquals($newValue, $subject->getValue());
     }
 }

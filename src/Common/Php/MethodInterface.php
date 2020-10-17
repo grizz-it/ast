@@ -42,6 +42,22 @@ interface MethodInterface extends PropertyInterface
     public function isAbstract(): bool;
 
     /**
+     * Sets whether the method is final.
+     *
+     * @param bool $isFinal
+     *
+     * @return void
+     */
+    public function setIsFinal(bool $isFinal): void;
+
+    /**
+     * Determines whether the method is final.
+     *
+     * @return bool
+     */
+    public function isFinal(): bool;
+
+    /**
      * Sets the methods' content.
      *
      * @param string $content

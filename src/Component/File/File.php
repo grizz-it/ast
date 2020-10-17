@@ -37,13 +37,25 @@ class File implements FileInterface
     }
 
     /**
-     * Contains the file name.
+     * Retrieves the file name.
      *
      * @return string
      */
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * Sets the file name.
+     *
+     * @param string $name
+     *
+     * @return void
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
     }
 
     /**

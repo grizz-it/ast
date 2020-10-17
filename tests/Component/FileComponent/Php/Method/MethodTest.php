@@ -23,6 +23,8 @@ class MethodTest extends TestCase
     /**
      * @covers ::getParameters
      * @covers ::setParameters
+     * @covers ::setIsFinal
+     * @covers ::isFinal
      * @covers ::setIsAbstract
      * @covers ::isAbstract
      * @covers ::setMethodContent
@@ -50,6 +52,9 @@ class MethodTest extends TestCase
         $methodContent = 'new Foo();';
         $subject->setMethodContent($methodContent);
         $this->assertEquals($methodContent, $subject->getMethodContent());
+        $this->assertEquals(false, $subject->isFinal());
+        $subject->setIsFinal(true);
+        $this->assertEquals(true, $subject->isFinal());
     }
 
     /**
@@ -81,6 +86,7 @@ class MethodTest extends TestCase
             'Description for a method.'
         );
 
+        $method->setIsFinal(true);
         $method->setMethodContent('foo();' . PHP_EOL . 'return bar();');
         $method->setParameters(
             new Variable(
@@ -118,7 +124,7 @@ class MethodTest extends TestCase
                 ' * ' . PHP_EOL .
                 ' * @return string' . PHP_EOL .
                 ' */' . PHP_EOL .
-                'public function foo(' . PHP_EOL .
+                'final public function foo(' . PHP_EOL .
                 '    array $varName = array (' . PHP_EOL .
                 '      \'foo\' => \'bar\',' . PHP_EOL .
                 '    )' . PHP_EOL .

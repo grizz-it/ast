@@ -39,6 +39,18 @@ class UseReference implements ReferenceInterface
     }
 
     /**
+     * Set the name of the reference.
+     *
+     * @param string $name
+     *
+     * @return void
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
      * Retrieves the content of the component.
      *
      * @return string

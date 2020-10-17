@@ -36,6 +36,8 @@ class ClassDefinitionTest extends TestCase
      * @covers ::setProperties
      * @covers ::isAbstract
      * @covers ::isTrait
+     * @covers ::isFinal
+     * @covers ::setIsFinal
      * @covers ::__construct
      *
      * @return void
@@ -51,6 +53,19 @@ class ClassDefinitionTest extends TestCase
         $this->assertEquals(false, $subject->isTrait());
         $subject->setIsTrait(true);
         $this->assertEquals(true, $subject->isTrait());
+
+        $subject->setNamespace('foo');
+        $this->assertEquals('foo', $subject->getNamespace());
+
+        $subject->setName('bar');
+        $this->assertEquals('bar', $subject->getName());
+
+        $subject->setExtends('baz');
+        $this->assertEquals('baz', $subject->getExtends());
+
+        $this->assertEquals(false, $subject->isFinal());
+        $subject->setIsFinal(true);
+        $this->assertEquals(true, $subject->isFinal());
 
         $property = $this->createMock(PropertyInterface::class);
         $subject->setProperties($property);
@@ -99,6 +114,8 @@ class ClassDefinitionTest extends TestCase
             'Description for a method.'
         ));
 
+        $class->setIsFinal(true);
+
         $class->setConstants(new Constant(
             'MY_CONSTANT',
             'public',
@@ -108,6 +125,35 @@ class ClassDefinitionTest extends TestCase
         ));
 
         $class->setProperties(
+            new Property(
+                'foo',
+                'private',
+                'string',
+                'Some random property.'
+            )
+        );
+
+        $classTwo = new classDefinition('Baz', 'Foo\\Bar', 'Qux');
+        $classTwo->setImplements('Foo', 'Bar');
+        $classTwo->setTraits(new UseReference('Bar\\Baz\\Qux'));
+        $classTwo->setMethods(new Method(
+            'foo',
+            'public',
+            'string',
+            'Description for a method.'
+        ));
+
+        $classTwo->setAbstract(true);
+
+        $classTwo->setConstants(new Constant(
+            'MY_CONSTANT',
+            'public',
+            '',
+            'Constant description.',
+            new Value('my-constant-value')
+        ));
+
+        $classTwo->setProperties(
             new Property(
                 'foo',
                 'private',
@@ -135,7 +181,7 @@ class ClassDefinitionTest extends TestCase
             [
                 $class,
                 'namespace Foo\\Bar;' . PHP_EOL . PHP_EOL .
-                'class Baz extends Qux implements Foo, Bar' . PHP_EOL .
+                'final class Baz extends Qux implements Foo, Bar' . PHP_EOL .
                 '{' . PHP_EOL .
                 '    use Bar\\Baz\\Qux;' . PHP_EOL .
                 '    ' . PHP_EOL .
@@ -161,7 +207,37 @@ class ClassDefinitionTest extends TestCase
                 '        ' . PHP_EOL .
                 '    }' . PHP_EOL .
                 '}' . PHP_EOL
-            ]
+                ],
+                [
+                    $classTwo,
+                    'namespace Foo\\Bar;' . PHP_EOL . PHP_EOL .
+                    'abstract class Baz extends Qux implements Foo, Bar' . PHP_EOL .
+                    '{' . PHP_EOL .
+                    '    use Bar\\Baz\\Qux;' . PHP_EOL .
+                    '    ' . PHP_EOL .
+                    '    /**' . PHP_EOL .
+                    '     * Constant description.' . PHP_EOL .
+                    '     */' . PHP_EOL .
+                    '    public const MY_CONSTANT = \'my-constant-value\';' . PHP_EOL .
+                    '    ' . PHP_EOL .
+                    '    /**' . PHP_EOL .
+                    '     * Some random property.' . PHP_EOL .
+                    '     * ' . PHP_EOL .
+                    '     * @var string' . PHP_EOL .
+                    '     */' . PHP_EOL .
+                    '    private $foo;' . PHP_EOL .
+                    '    ' . PHP_EOL .
+                    '    /**' . PHP_EOL .
+                    '     * Description for a method.' . PHP_EOL .
+                    '     * ' . PHP_EOL .
+                    '     * @return string' . PHP_EOL .
+                    '     */' . PHP_EOL .
+                    '    public function foo(): string' . PHP_EOL .
+                    '    {' . PHP_EOL .
+                    '        ' . PHP_EOL .
+                    '    }' . PHP_EOL .
+                    '}' . PHP_EOL
+                ]
         ];
     }
 }

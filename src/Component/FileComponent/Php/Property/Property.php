@@ -22,6 +22,13 @@ class Property extends Variable implements PropertyInterface
     private $visibility;
 
     /**
+     * Whether the property is static.
+     *
+     * @var bool
+     */
+    private $isStatic = false;
+
+    /**
      * Constructor.
      *
      * @param string $name
@@ -52,6 +59,40 @@ class Property extends Variable implements PropertyInterface
     }
 
     /**
+     * Set the visibility of the property.
+     *
+     * @param string $visibility
+     *
+     * @return void
+     */
+    public function setVisibility(string $visibility): void
+    {
+        $this->visibility = $visibility;
+    }
+
+    /**
+     * Sets whether the property is static.
+     *
+     * @param bool $isStatic
+     *
+     * @return void
+     */
+    public function setIsStatic(bool $isStatic): void
+    {
+        $this->isStatic = $isStatic;
+    }
+
+    /**
+     * Determines whether the property is static.
+     *
+     * @return bool
+     */
+    public function isStatic(): bool
+    {
+        return $this->isStatic;
+    }
+
+    /**
      * Retrieves the content of the component.
      *
      * @return string
@@ -73,6 +114,7 @@ class Property extends Variable implements PropertyInterface
         $value = $this->getValue();
         return (new DocBlock($docContent))->getContent() .
             $this->visibility .
+            ($this->isStatic ? ' static' : '') .
             ' $' .
             $this->getName() .
             (

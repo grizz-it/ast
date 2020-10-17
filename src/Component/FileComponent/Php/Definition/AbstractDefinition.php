@@ -87,6 +87,18 @@ abstract class AbstractDefinition implements DefinitionInterface
     }
 
     /**
+     * Set the name of the definition.
+     *
+     * @param string $name
+     *
+     * @return void
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
      * Retrieves the namespace of the definition.
      *
      * @return string
@@ -97,6 +109,18 @@ abstract class AbstractDefinition implements DefinitionInterface
     }
 
     /**
+     * Set the namespace of the definition.
+     *
+     * @param string $namespace
+     *
+     * @return void
+     */
+    public function setNamespace(string $namespace): void
+    {
+        $this->namespace = $namespace;
+    }
+
+    /**
      * Retrieves what the definition extends.
      *
      * @return string
@@ -104,6 +128,18 @@ abstract class AbstractDefinition implements DefinitionInterface
     public function getExtends(): string
     {
         return $this->extends;
+    }
+
+    /**
+     * Sets what the definition extends.
+     *
+     * @param string $extends
+     *
+     * @return void
+     */
+    public function setExtends(string $extends): void
+    {
+        $this->extends = $extends;
     }
 
     /**

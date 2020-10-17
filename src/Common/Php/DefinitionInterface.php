@@ -19,6 +19,15 @@ interface DefinitionInterface extends FileComponentInterface
     public function getName(): string;
 
     /**
+     * Set the name of the definition.
+     *
+     * @param string $name
+     *
+     * @return void
+     */
+    public function setName(string $name): void;
+
+    /**
      * Retrieves the namespace of the definition.
      *
      * @return string
@@ -26,11 +35,29 @@ interface DefinitionInterface extends FileComponentInterface
     public function getNamespace(): string;
 
     /**
+     * Set the namespace of the definition.
+     *
+     * @param string $namespace
+     *
+     * @return void
+     */
+    public function setNamespace(string $namespace): void;
+
+    /**
      * Retrieves what the definition extends.
      *
      * @return string
      */
     public function getExtends(): string;
+
+        /**
+     * Sets what the definition extends.
+     *
+     * @param string $extends
+     *
+     * @return void
+     */
+    public function setExtends(string $extends): void;
 
     /**
      * Retrieves the constants for the definition.
