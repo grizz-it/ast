@@ -74,4 +74,20 @@ interface VariableInterface extends FileComponentInterface
      * @return void
      */
     public function setType(string $type): void;
+
+    /**
+     * Determines whether the variable is variadic.
+     *
+     * @return bool
+     */
+    public function isVariadic(): bool;
+
+    /**
+     * Sets the variable to be variadic.
+     *
+     * @param bool $isVariadic
+     *
+     * @return void
+     */
+    public function setIsVariadic(bool $isVariadic): void;
 }

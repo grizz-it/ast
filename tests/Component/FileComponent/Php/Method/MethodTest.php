@@ -104,15 +104,16 @@ class MethodTest extends TestCase
             'Description for a method.'
         );
 
-        $methodTwo->setIsAbstract(true);
-        $methodTwo->setParameters(
-            new Variable(
-                'varName',
-                '',
-                'Variable description.',
-                new Value(['foo' => 'bar'])
-            )
+        $variable = new Variable(
+            'varName',
+            '',
+            'Variable description.'
         );
+
+        $variable->setIsVariadic(true);
+
+        $methodTwo->setIsAbstract(true);
+        $methodTwo->setParameters($variable);
 
         return [
             [
@@ -138,14 +139,12 @@ class MethodTest extends TestCase
                 '/**' . PHP_EOL .
                 ' * Description for a method.' . PHP_EOL .
                 ' * ' . PHP_EOL .
-                ' * @param mixed $varName Variable description.' . PHP_EOL .
+                ' * @param mixed ...$varName Variable description.' . PHP_EOL .
                 ' * ' . PHP_EOL .
                 ' * @return mixed' . PHP_EOL .
                 ' */' . PHP_EOL .
                 'public function foo(' . PHP_EOL .
-                '    $varName = array (' . PHP_EOL .
-                '      \'foo\' => \'bar\',' . PHP_EOL .
-                '    )' . PHP_EOL .
+                '    ...$varName' . PHP_EOL .
                 ');' . PHP_EOL . PHP_EOL
             ]
         ];

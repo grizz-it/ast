@@ -41,6 +41,13 @@ class Variable implements VariableInterface
     private $value;
 
     /**
+     * Determines whether the variable is variadic.
+     *
+     * @var bool
+     */
+    private $isVariadic = false;
+
+    /**
      * Constructor.
      *
      * @param string $name
@@ -149,6 +156,28 @@ class Variable implements VariableInterface
     }
 
     /**
+     * Determines whether the variable is variadic.
+     *
+     * @return bool
+     */
+    public function isVariadic(): bool
+    {
+        return $this->isVariadic;
+    }
+
+    /**
+     * Sets the variable to be variadic.
+     *
+     * @param bool $isVariadic
+     *
+     * @return void
+     */
+    public function setIsVariadic(bool $isVariadic): void
+    {
+        $this->isVariadic = $isVariadic;
+    }
+
+    /**
      * Retrieves the content of the component.
      *
      * @return string
@@ -156,8 +185,13 @@ class Variable implements VariableInterface
     public function getContent(): string
     {
         return ($this->type !== '' ? $this->type . ' ' : '') .
+            ($this->isVariadic ? '...' : '') .
             '$' .
             $this->name .
-            ($this->value !== null ? ' = ' . $this->value->getContent() : '');
+            (
+                $this->value !== null && !$this->isVariadic ?
+                ' = ' . $this->value->getContent() :
+                ''
+            );
     }
 }

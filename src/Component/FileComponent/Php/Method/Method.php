@@ -164,6 +164,7 @@ class Method extends Property implements MethodInterface
                 $docContent .= sprintf(
                     '@param %s %s%s',
                     ($type !== $trimmedType ? $trimmedType . '|null' : $type),
+                    ($parameter->isVariadic() ? '...' : '') .
                     '$' . $parameter->getName(),
                     $description
                 ) . PHP_EOL;

@@ -21,6 +21,8 @@ class VariableTest extends TestCase
      * @covers ::getValue
      * @covers ::setValue
      * @covers ::getContent
+     * @covers ::isVariadic
+     * @covers ::setIsVariadic
      * @covers ::__construct
      *
      * @return void
@@ -41,6 +43,7 @@ class VariableTest extends TestCase
         $this->assertEquals($description, $subject->getDescription());
         $this->assertEquals($type, $subject->getType());
         $this->assertEquals($value, $subject->getValue());
+        $this->assertEquals(false, $subject->isVariadic());
 
         $this->assertEquals(
             'string $foo = \'my-value\'',
@@ -52,10 +55,16 @@ class VariableTest extends TestCase
         $subject->setDescription('Another description.');
         $subject->setType('int');
         $subject->setValue($newValue);
+        $subject->setIsVariadic(true);
 
         $this->assertEquals('bar', $subject->getName());
         $this->assertEquals('Another description.', $subject->getDescription());
         $this->assertEquals('int', $subject->getType());
         $this->assertEquals($newValue, $subject->getValue());
+        $this->assertEquals(true, $subject->isVariadic());
+        $this->assertEquals(
+            'int ...$bar',
+            $subject->getContent()
+        );
     }
 }
