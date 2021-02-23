@@ -22,42 +22,42 @@ abstract class AbstractDefinition implements DefinitionInterface
      *
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * Contains the namespace of the definition.
      *
      * @var string
      */
-    private $namespace;
+    private string $namespace;
 
     /**
      * Contains the extends of the definition.
      *
      * @var string
      */
-    private $extends;
+    private string $extends;
 
     /**
      * Contains the methods of the definition.
      *
      * @var MethodInterface[]
      */
-    private $methods = [];
+    private array $methods = [];
 
     /**
      * Contains the constants of the definition.
      *
      * @var PropertyInterface[]
      */
-    private $constants = [];
+    private array $constants = [];
 
     /**
      * Contains the use statements of the definition.
      *
      * @var ReferenceInterface[]
      */
-    private $uses = [];
+    private array $uses = [];
 
     /**
      * Constructor.

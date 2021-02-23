@@ -16,7 +16,7 @@ class UseReference implements ReferenceInterface
      *
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * Constructor.

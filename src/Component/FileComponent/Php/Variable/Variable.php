@@ -17,35 +17,35 @@ class Variable implements VariableInterface
      *
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * Contains the type of the variable.
      *
      * @var string
      */
-    private $type;
+    private string $type;
 
     /**
      * Contains the description of the variable.
      *
      * @var string
      */
-    private $description;
+    private string $description;
 
     /**
      * Contains the value of the variable.
      *
      * @var ValueInterface|null
      */
-    private $value;
+    private ?ValueInterface $value;
 
     /**
      * Determines whether the variable is variadic.
      *
      * @var bool
      */
-    private $isVariadic = false;
+    private bool $isVariadic = false;
 
     /**
      * Constructor.

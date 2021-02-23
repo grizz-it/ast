@@ -16,7 +16,7 @@ class TextComponent implements FileComponentInterface
      *
      * @var string
      */
-    private $content;
+    private string $content;
 
     /**
      * Constructor.

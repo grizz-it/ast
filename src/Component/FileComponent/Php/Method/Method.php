@@ -23,28 +23,28 @@ class Method extends Property implements MethodInterface
      *
      * @var VariableInterface[]
      */
-    private $parameters = [];
+    private array $parameters = [];
 
     /**
      * Determines whether the method is abstract or not.
      *
      * @var bool
      */
-    private $isAbstract = false;
+    private bool $isAbstract = false;
 
     /**
      * Contains the content of the method.
      *
      * @var string
      */
-    private $content = '';
+    private string $content = '';
 
     /**
      * Determines whether the method is final.
      *
      * @var bool
      */
-    private $isFinal = false;
+    private bool $isFinal = false;
 
     /**
      * Retrieves the parameters of the method.

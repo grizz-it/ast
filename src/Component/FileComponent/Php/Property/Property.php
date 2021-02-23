@@ -19,14 +19,14 @@ class Property extends Variable implements PropertyInterface
      *
      * @var string
      */
-    private $visibility;
+    private string $visibility;
 
     /**
      * Whether the property is static.
      *
      * @var bool
      */
-    private $isStatic = false;
+    private bool $isStatic = false;
 
     /**
      * Constructor.

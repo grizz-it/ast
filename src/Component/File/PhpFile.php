@@ -16,7 +16,7 @@ class PhpFile extends File
      *
      * @var DocBlock
      */
-    private $header;
+    private DocBlock $header;
 
     /**
      * Sets the header for the file.

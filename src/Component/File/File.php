@@ -17,14 +17,14 @@ class File implements FileInterface
      *
      * @var FileComponentInterface[]
      */
-    private $components = [];
+    private array $components = [];
 
     /**
      * Contains the file name.
      *
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * Constructor.
